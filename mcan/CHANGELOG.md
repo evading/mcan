@@ -3,6 +3,7 @@
 Tagging in git follows a pattern: `mcan/<version>`.
 
 ## [Unreleased]
+- Add Can::aux::initialization_mode
 
 ## [0.3.0] - 2023-04-24
 
