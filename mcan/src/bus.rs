@@ -178,6 +178,11 @@ pub trait DynAux {
     ///
     /// If timestamping is disabled, its value is zero.
     fn timestamp(&self) -> u16;
+
+    /// Current state of the `Rx` pin.
+    ///
+    /// Read the `Rx` pin state from the test register.
+    fn rx_is_high(&self) -> bool;
 }
 
 impl<'a, Id: mcan_core::CanId, D: mcan_core::Dependencies<Id>> Aux<'a, Id, D> {
@@ -212,6 +217,10 @@ impl<'a, Id: mcan_core::CanId, D: mcan_core::Dependencies<Id>> DynAux for Aux<'a
 
     fn timestamp(&self) -> u16 {
         self.reg.tscv.read().tsc().bits()
+    }
+
+    fn rx_is_high(&self) -> bool {
+        self.reg.test.read().rx().bit()
     }
 }
 
